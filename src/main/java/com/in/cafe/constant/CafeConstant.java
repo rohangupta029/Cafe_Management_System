@@ -6,4 +6,14 @@ public class CafeConstant {
 
     public static String INVALID_DATA= "Invalid Data.";
 
+    public static String WAIT= "Wait for admin approval.";
+
+    public static String BAD_CREDENTIALS= "Bad Credentials.";
+
+    public static String UNAUTHORISED_ACCESS= "Unauthorised Access";
+
+
+
+
+
 }
