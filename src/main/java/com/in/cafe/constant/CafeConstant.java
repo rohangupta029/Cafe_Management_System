@@ -12,6 +12,8 @@ public class CafeConstant {
 
     public static String UNAUTHORISED_ACCESS= "Unauthorised Access";
 
+    public static final String STORE_LOCATION="D:\\Project\\StoredFiles\\Cafe-Stored-Files";
+
 
 
 
