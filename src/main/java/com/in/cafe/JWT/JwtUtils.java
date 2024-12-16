@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtils {
 
-    private String secret="Rohan029@";
+    private String secret= "rohanguptaproject";
 
     public Date extractExpiration(String token){
         return extractClaimis(token, Claims::getExpiration);
@@ -24,12 +25,18 @@ public class JwtUtils {
         return extractClaimis(token, Claims::getSubject);
     }
 
-    private <T> T extractClaimis(String token, Function<Claims, T> claimsResolver){
+    public  <T> T extractClaimis(String token, Function<Claims, T> claimsResolver){
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
     public Claims extractAllClaims(String token){
+        if (token == null || token.trim().isEmpty()) {
+            throw new IllegalArgumentException("JWT String cannot be null or empty");
+        }
+
+
+
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
@@ -39,7 +46,7 @@ public class JwtUtils {
 
     public Boolean validateToken(String token, UserDetails userDetails){
         final String username= extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (username.equals(userDetails.getUsername()) && !this.isTokenExpired(token));
 
 
     }
@@ -52,6 +59,8 @@ public class JwtUtils {
     }
 
     private String createToken(Map<String, Object> claims, String subject){
+
+        //String encodedString = Base64.getEncoder().encodeToString(secret.getBytes());
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)

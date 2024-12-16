@@ -97,8 +97,7 @@ public class UserServiceImpl implements UserService {
         }catch (Exception ex){
             log.error("{}", ex);
         }
-
-        return CafeUtils.getResponseEntity(CafeConstant.BAD_CREDENTIALS, HttpStatus.INTERNAL_SERVER_ERROR);
+        return CafeUtils.getResponseEntity(CafeConstant.BAD_CREDENTIALS, HttpStatus.BAD_REQUEST );
     }
 
     @Override
@@ -148,7 +147,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<String> checkToken() {
 
 
-        return CafeUtils.getResponseEntity(CafeConstant.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return CafeUtils.getResponseEntity("true", HttpStatus.OK);
     }
 
     @Override
