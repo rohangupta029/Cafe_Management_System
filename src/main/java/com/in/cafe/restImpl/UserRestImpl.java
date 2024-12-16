@@ -68,7 +68,7 @@ public class UserRestImpl implements UserRest {
     @Override
     public ResponseEntity<String> checkToken() {
        try {
-           userService.checkToken();
+           return userService.checkToken();
        }catch (Exception ex){
            ex.printStackTrace();
        }

@@ -30,6 +30,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
         userDetails =userDao.findByEmailId(username);
 
         if (!Objects.isNull(userDetails)){
+            log.info("Inside loadUserByUsername  and userDetails{}", userDetails);
             return new User(userDetails.getEmail(), userDetails.getPassword(), new ArrayList<>());
         }
         else
@@ -39,9 +40,6 @@ public class CustomerUserDetailsService implements UserDetailsService {
     }
 
     public com.in.cafe.POJO.User getUserDetails(){
-//        com.in.cafe.POJO.User user= userDetails;
-//        user.setPassword(null);
-
         return userDetails;
     }
 }
